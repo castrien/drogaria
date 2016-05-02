@@ -30,7 +30,7 @@
         <property name="show_sql">true</property>
 
         <!-- Drop and re-create the database schema on startup -->
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">validate</property>
 
   		<!-- Mapeamento -->
 		<mapping class="br.com.claudio.drogaria.domain.Estado"/>
@@ -40,6 +40,8 @@
 		<mapping class="br.com.claudio.drogaria.domain.Pessoa"/>
 		<mapping class="br.com.claudio.drogaria.domain.Cliente"/>
 		<mapping class="br.com.claudio.drogaria.domain.Funcionario"/>
+		<mapping class="br.com.claudio.drogaria.domain.Venda"/>
+		<mapping class="br.com.claudio.drogaria.domain.Usuario"/>
 
     </session-factory>
 
