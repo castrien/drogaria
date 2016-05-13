@@ -40,7 +40,7 @@ public class CidadeDAOTest {
 	}
 	
 	@Test
-	@Ignore
+	
 	public void buscar(){
 		Long codigo = 50l;
 		
@@ -66,6 +66,7 @@ public class CidadeDAOTest {
 	}
 	
 	@Test
+	@Ignore
 	public void editar(){
 		Long codigoCidade = 60l;
 		Long codigoEstado = 10l;

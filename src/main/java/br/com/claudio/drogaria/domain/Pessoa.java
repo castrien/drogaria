@@ -29,6 +29,7 @@ public class Pessoa extends GenericDomain {
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Cidade cidade;
+	
 	public String getNome() {
 		return nome;
 	}
