@@ -12,7 +12,6 @@ public class FabricanteDAOTest {
 	@Ignore
 	public void salvar(){
 		Fabricante fabricante = new Fabricante();
-		fabricante.setCodigo(025l);
 		fabricante.setDescricao("Avon");
 		
 		FabricanteDAO fabricanteDAO = new FabricanteDAO();
@@ -64,7 +63,7 @@ public class FabricanteDAOTest {
 		}
 		
 	}
-	
+	@Ignore
 	@Test
 	public void editar(){
 		Long codigo = 40l;
@@ -80,5 +79,20 @@ public class FabricanteDAOTest {
 			fabricanteDAO.editar(fabricante);
 			System.out.println("Registro Editado");
 		}
+	}
+	
+	@Test
+	public void merge(){
+		//Fabricante fabricante = new Fabricante();
+		//fabricante.setDescricao("Fabricante A");
+		
+		//FabricanteDAO fabricanteDAO = new FabricanteDAO();
+		//fabricanteDAO.salvar(fabricante);
+		
+		FabricanteDAO fabricanteDAO = new FabricanteDAO();
+		Fabricante fabricante = fabricanteDAO.buscar(160l);
+		fabricante.setDescricao("Fabricante B");
+		fabricanteDAO.merge(fabricante);
+		
 	}
 }
