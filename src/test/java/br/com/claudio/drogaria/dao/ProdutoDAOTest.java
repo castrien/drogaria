@@ -15,7 +15,7 @@ public class ProdutoDAOTest {
 	@Test
 	public void salvar(){
 		FabricanteDAO fabricanteDAO = new FabricanteDAO();
-		Fabricante fabricante = fabricanteDAO.buscar(10l);
+		Fabricante fabricante = fabricanteDAO.buscar(40l);
 		
 		Produto produto = new Produto();
 		produto.setDescricao("Teste");
