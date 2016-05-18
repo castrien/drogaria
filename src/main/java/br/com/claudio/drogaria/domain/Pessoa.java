@@ -23,7 +23,7 @@ public class Pessoa extends GenericDomain {
 	private String complemento;
 	@Column(nullable = false, length = 10)
 	private String telefone;
-	@Column(length = 9 , nullable = false)
+	@Column(length = 11 , nullable = false)
 	private String celular;
 	private String email;
 	@ManyToOne

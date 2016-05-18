@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @SuppressWarnings("serial")
 @Entity
@@ -18,6 +19,7 @@ public class Produto extends GenericDomain {
 	@Column(nullable = false, precision = 6, scale = 2)
 	private BigDecimal preco;
 	
+	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Fabricante fabricante;
 

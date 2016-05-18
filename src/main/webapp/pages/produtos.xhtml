@@ -9,24 +9,30 @@
 	<title>Produtos</title>
 </h:head>
 <h:body>
-	<h:form>
+	<p:growl id="mensagem"/>
+
+	<h:form id="formListagem">
 		<p:panel header="Produtos - Listagem">
-			<p:dataTable emptyMessage="Nenhum registro encontrado"
-				paginator="true">
+			<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado"
+				paginator="true" value="#{produtoBean.produtos}" var="produto" rows="5">
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();" />
 				</f:facet>
 
 				<p:column headerText="Descrição">
+					<h:outputText value="#{produto.descricao}"/>
 				</p:column>
 
 				<p:column headerText="Quantidade">
+					<h:outputText value="#{produto.quantidade}"/>
 				</p:column>
 				
 				<p:column headerText="Preço">
+					<h:outputText value="#{produto.preco}"/>
 				</p:column>
 				
 				<p:column headerText="Fabricante">
+					<h:outputText value="#{produto.fabricante.descricao}"/>
 				</p:column>
 
 				<p:column headerText="Opcões">

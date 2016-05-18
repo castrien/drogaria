@@ -9,10 +9,10 @@ import br.com.claudio.drogaria.domain.Fabricante;
 
 public class FabricanteDAOTest {
 	@Test
-	@Ignore
+	
 	public void salvar(){
 		Fabricante fabricante = new Fabricante();
-		fabricante.setDescricao("Avon");
+		fabricante.setDescricao("Teste");
 		
 		FabricanteDAO fabricanteDAO = new FabricanteDAO();
 		fabricanteDAO.salvar(fabricante);
@@ -81,6 +81,7 @@ public class FabricanteDAOTest {
 		}
 	}
 	
+	@Ignore
 	@Test
 	public void merge(){
 		//Fabricante fabricante = new Fabricante();

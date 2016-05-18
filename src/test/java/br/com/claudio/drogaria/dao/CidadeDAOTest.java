@@ -10,11 +10,11 @@ import br.com.claudio.drogaria.domain.Estado;
 
 public class CidadeDAOTest {
 	@Test
-	@Ignore
+	
 	public void salvar(){
 		EstadoDAO estadoDAO = new EstadoDAO();
 		
-		Estado estado = estadoDAO.buscar(30l);
+		Estado estado = estadoDAO.buscar(10l);
 		
 		Cidade cidade = new Cidade();
 		cidade.setNome("Recife");
@@ -40,7 +40,7 @@ public class CidadeDAOTest {
 	}
 	
 	@Test
-	
+	@Ignore
 	public void buscar(){
 		Long codigo = 50l;
 		

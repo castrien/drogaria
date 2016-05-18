@@ -14,7 +14,7 @@ public class PessoaDAOTest {
 			Pessoa pessoa = new Pessoa();
 			
 			CidadeDAO cidadeDAO = new CidadeDAO();
-			Cidade cidade = cidadeDAO.buscar(50l);
+			Cidade cidade = cidadeDAO.buscar(20l);
 			
 			pessoa.setNome("Claudio Alessandro");
 			pessoa.setBairro("Rio Vermelho");
