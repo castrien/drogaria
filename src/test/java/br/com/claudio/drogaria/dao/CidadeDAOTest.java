@@ -10,7 +10,7 @@ import br.com.claudio.drogaria.domain.Estado;
 
 public class CidadeDAOTest {
 	@Test
-	
+	@Ignore
 	public void salvar(){
 		EstadoDAO estadoDAO = new EstadoDAO();
 		
@@ -81,5 +81,21 @@ public class CidadeDAOTest {
 		cidade.setEstado(estado);
 		
 		cidadeDAO.editar(cidade);
+	}
+	
+	@Test
+	public void listarPorEstado(){
+		Long estadoCodigo = 70l;
+		
+		CidadeDAO cidadeDAO = new CidadeDAO();
+		List<Cidade> resultado = cidadeDAO.buscarPorEstado(estadoCodigo);
+		
+		for(Cidade cidade : resultado){
+			System.out.println("Código: " + cidade.getCodigo());
+			System.out.println("Nome: " + cidade.getNome());
+			System.out.println("Código do Estado: " + cidade.getEstado().getCodigo());
+			System.out.println("Nome do Estado: " + cidade.getEstado().getNome());
+			System.out.println();
+		}
 	}
 }

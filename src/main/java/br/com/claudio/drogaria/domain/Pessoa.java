@@ -10,20 +10,22 @@ import javax.persistence.ManyToOne;
 public class Pessoa extends GenericDomain {
 	@Column(length = 50, nullable = false, unique = true)
 	private String nome;
-	@Column(length = 11, nullable = false, unique = true)
+	@Column(length = 14, nullable = false, unique = true)
 	private String cpf;
-	@Column(length = 10, nullable = false , unique = true)
+	@Column(length = 13, nullable = false , unique = true)
 	private String rg;
+	@Column(nullable = false, length = 100)
+	private String rua;
 	@Column(nullable = false)
 	private Short numero;
 	@Column(nullable = false)
 	private String bairro;
-	@Column(length = 8, nullable = false)
+	@Column(length = 10, nullable = false)
 	private String cep;
 	private String complemento;
-	@Column(nullable = false, length = 10)
+	@Column(nullable = false, length = 13)
 	private String telefone;
-	@Column(length = 11 , nullable = false)
+	@Column(length = 14 , nullable = false)
 	private String celular;
 	private String email;
 	@ManyToOne
@@ -47,6 +49,13 @@ public class Pessoa extends GenericDomain {
 	}
 	public void setRg(String rg) {
 		this.rg = rg;
+		 
+	}
+	public String getRua() {
+		return rua;
+	}
+	public void setRua(String rua) {
+		this.rua = rua;
 	}
 	public Short getNumero() {
 		return numero;

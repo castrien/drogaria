@@ -1,6 +1,7 @@
 package br.com.claudio.drogaria.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -9,17 +10,23 @@ import javax.faces.bean.ViewScoped;
 
 import org.omnifaces.util.Messages;
 
+import br.com.claudio.drogaria.dao.CidadeDAO;
+import br.com.claudio.drogaria.dao.EstadoDAO;
 import br.com.claudio.drogaria.dao.PessoaDAO;
 import br.com.claudio.drogaria.domain.Cidade;
+import br.com.claudio.drogaria.domain.Estado;
 import br.com.claudio.drogaria.domain.Pessoa;
 
 @SuppressWarnings("serial")
 @ManagedBean
 @ViewScoped
 public class PessoaBean implements Serializable {
-	Pessoa pessoa;
-	List<Pessoa> pessoas;
-	List<Cidade> cidades;
+	private Pessoa pessoa;
+	private List<Pessoa> pessoas;
+	
+	private Estado estado;
+	private List<Cidade> cidades;
+	private List<Estado> estados;
 	
 	public Pessoa getPessoa() {
 		return pessoa;
@@ -40,6 +47,22 @@ public class PessoaBean implements Serializable {
 		this.cidades = cidades;
 	}
 	
+	public List<Estado> getEstados() {
+		return estados;
+	}
+	
+	public void setEstados(List<Estado> estados) {
+		this.estados = estados;
+	}
+	
+	public Estado getEstado() {
+		return estado;
+	}
+	
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+	
 	@PostConstruct
 	public void listar(){
 		try {
@@ -50,6 +73,51 @@ public class PessoaBean implements Serializable {
 			erro.printStackTrace();
 		}
 		
+	}
+	
+	public void novo(){
+		try {
+			pessoa = new Pessoa();
+			EstadoDAO estadoDAO = new EstadoDAO();
+			estados = estadoDAO.listar("nome");
+			
+			cidades = new ArrayList<Cidade>();
+		} catch (RuntimeException erro) {
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar gerar um novo produto");
+			erro.printStackTrace();
+		}
+	}
+	
+	public void salvar(){
+		try {
+			PessoaDAO pessoaDAO = new PessoaDAO();
+			pessoaDAO.merge(pessoa);
+			novo();
+			CidadeDAO cidadeDAO = new CidadeDAO();
+			cidades = cidadeDAO.listar();
+			listar();
+			Messages.addFlashGlobalInfo("Pessoa salvo com sucesso!");
+		}catch(RuntimeException erro) {
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar salvar a pessoa");
+			erro.printStackTrace();
+		}
+	}
+	
+	//popula cidades com base no estado
+	public void popular(){
+		try{
+			if(estado != null){
+				CidadeDAO cidadeDAO = new CidadeDAO();
+				cidades = cidadeDAO.buscarPorEstado(estado.getCodigo());
+				System.out.println("Total: " + cidades.size());
+				}
+			else{
+				cidades = new ArrayList<>();
+			}
+		}catch (RuntimeException erro){
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar filtrar as cidades");
+			erro.printStackTrace();
+		}
 	}
 	
 }
