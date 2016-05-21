@@ -14,7 +14,7 @@ public class ClienteDAOTest {
 	@Test
 	public void salvar() throws ParseException{
 		PessoaDAO pessoaDAO = new PessoaDAO();
-		Pessoa pessoa = pessoaDAO.buscar(10l);
+		Pessoa pessoa = pessoaDAO.buscar(91l);
 		
 		Cliente cliente = new Cliente();
 		cliente.setDataCadastro(new SimpleDateFormat("dd/MM/yyyy").parse("09/06/2015"));

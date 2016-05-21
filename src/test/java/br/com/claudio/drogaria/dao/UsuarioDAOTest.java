@@ -10,7 +10,7 @@ public class UsuarioDAOTest {
 	@Test
 	public void salvar(){
 		PessoaDAO pessoaDAO = new PessoaDAO();
-		Pessoa pessoa = pessoaDAO.buscar(10l);
+		Pessoa pessoa = pessoaDAO.buscar(91l);
 		
 		Usuario usuario = new Usuario();
 		usuario.setAtivo(true);

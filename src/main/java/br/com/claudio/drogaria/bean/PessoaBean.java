@@ -78,6 +78,7 @@ public class PessoaBean implements Serializable {
 	public void novo(){
 		try {
 			pessoa = new Pessoa();
+			estado = new Estado();
 			EstadoDAO estadoDAO = new EstadoDAO();
 			estados = estadoDAO.listar("nome");
 			
@@ -93,6 +94,7 @@ public class PessoaBean implements Serializable {
 			PessoaDAO pessoaDAO = new PessoaDAO();
 			pessoaDAO.merge(pessoa);
 			novo();
+			estado = new Estado();
 			CidadeDAO cidadeDAO = new CidadeDAO();
 			cidades = cidadeDAO.listar();
 			listar();

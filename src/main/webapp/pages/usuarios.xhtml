@@ -12,21 +12,25 @@
 	<h:form>
 		<p:panel header="Usuários - Listagem">
 			<p:dataTable emptyMessage="Nenhum registro encontrado"
-				paginator="true">
+				paginator="true" value="#{usuarioBean.usuarios}" var="usuario" rows="5">
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();" />
 				</f:facet>
 
-				<p:column headerText="Nome">
+				<p:column headerText="Nome" sortBy="#{usuario.pessoa.nome}">
+					<h:outputText value="#{usuario.pessoa.nome}"/>
 				</p:column>
 
-				<p:column headerText="CPF">
+				<p:column headerText="CPF" sortBy="#{usuario.pessoa.cpf}">
+					<h:outputText value="#{usuario.pessoa.cpf}"/>
 				</p:column>
 				
-				<p:column headerText="Tipo">
+				<p:column headerText="Tipo" sortBy="#{usuario.tipoFormatado}">
+					<h:outputText value="#{usuario.tipoFormatado}"/>
 				</p:column>
 				
-				<p:column headerText="Ativo">
+				<p:column headerText="Ativo" sortBy="#{usuario.ativoFormatado}">
+					<h:outputText value="#{usuario.ativoFormatado}"/>
 				</p:column>
 
 				<p:column headerText="Opcões">
