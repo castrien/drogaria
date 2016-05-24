@@ -48,18 +48,18 @@
 
 				<p:column headerText="Opcões">
 					<p:commandButton icon="ui-icon-trash"
-						actionListener="#{cidadeBean.excluir}"
+						actionListener="#{pessoaBean.excluir}"
 						update=":mensagem :formListagem:tabela">
 						<p:confirm header="Confirmação"
-							message="Deseja excluir a cidade ?" icon="ui-icon-alert" />
-						<f:attribute name="cidadeSelecionada" value="#{cidade}" />
+							message="Deseja excluir a pessoa ?" icon="ui-icon-alert" />
+						<f:attribute name="pessoaSelecionada" value="#{pessoa}" />
 					</p:commandButton>
 
 					<p:commandButton icon="ui-icon-pencil"
-						actionListener="#{cidadeBean.editar}"
+						actionListener="#{pessoaBean.editar}"
 						update=":formCadastro:painel :mensagem"
 						oncomplete="PF('dialogo').show();">
-						<f:attribute name="cidadeSelecionada" value="#{cidade}" />
+						<f:attribute name="pessoaSelecionada" value="#{pessoa}" />
 						<f:actionListener
 							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 

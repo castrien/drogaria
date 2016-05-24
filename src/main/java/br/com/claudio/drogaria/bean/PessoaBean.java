@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.ActionEvent;
 
 import org.omnifaces.util.Messages;
 
@@ -119,6 +120,22 @@ public class PessoaBean implements Serializable {
 		}catch (RuntimeException erro){
 			Messages.addFlashGlobalError("Ocorreu um erro ao tentar filtrar as cidades");
 			erro.printStackTrace();
+		}
+	}
+	
+	public void editar(ActionEvent evento){
+		try {
+			pessoa = (Pessoa) evento.getComponent().getAttributes().get("pessoaSelecionada");
+			
+			estado = pessoa.getCidade().getEstado();
+			
+			EstadoDAO estadoDAO = new EstadoDAO();
+			estados = estadoDAO.listar("nome");
+			
+			CidadeDAO cidadeDAO = new CidadeDAO();
+			cidades = cidadeDAO.buscarPorEstado(estado.getCodigo());
+		} catch (RuntimeException erro) {
+			Messages.addGlobalError("Ocorreu um erro ao tentar selecionar uma pessoa");
 		}
 	}
 	
