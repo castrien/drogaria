@@ -42,6 +42,8 @@
 		<mapping class="br.com.claudio.drogaria.domain.Funcionario"/>
 		<mapping class="br.com.claudio.drogaria.domain.Venda"/>
 		<mapping class="br.com.claudio.drogaria.domain.Usuario"/>
+		<mapping class="br.com.claudio.drogaria.domain.ItemVenda"/>
+		
 
     </session-factory>
 

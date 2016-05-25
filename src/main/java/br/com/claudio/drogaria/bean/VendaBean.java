@@ -3,6 +3,7 @@ package br.com.claudio.drogaria.bean;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,8 +13,10 @@ import javax.faces.event.ActionEvent;
 
 import org.omnifaces.util.Messages;
 
+import br.com.claudio.drogaria.dao.ClienteDAO;
 import br.com.claudio.drogaria.dao.FuncionarioDAO;
 import br.com.claudio.drogaria.dao.ProdutoDAO;
+import br.com.claudio.drogaria.dao.VendaDAO;
 import br.com.claudio.drogaria.domain.Cliente;
 import br.com.claudio.drogaria.domain.Funcionario;
 import br.com.claudio.drogaria.domain.ItemVenda;
@@ -142,10 +145,29 @@ public class VendaBean implements Serializable {
 	
 	public void finalizar(){
 		try {
+			venda.setHorario(new Date());
+			
 			FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
-			funcionarios = funcionarioDAO.listar();
+			funcionarios = funcionarioDAO.listarOrdenado();
+			ClienteDAO clienteDAO = new ClienteDAO();
+			clientes = clienteDAO.listarOrdenado();
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar finalizar a venda");
+			erro.printStackTrace();
+		}
+	}
+	
+	public void salvar(){
+		try {
+			if(venda.getPrecototal().signum() == 0){
+				Messages.addGlobalInfo("Infome pelo menos um item para a venda");
+			}else{
+				VendaDAO vendaDAO = new VendaDAO();
+				vendaDAO.salvar(venda, itensVenda);
+				Messages.addGlobalInfo("Venda realizada com sucesso!");
+			}
+		} catch (RuntimeException erro) {
+			Messages.addGlobalError("Ocorreu um erro ao tentar finalizar salvar venda");
 			erro.printStackTrace();
 		}
 	}
