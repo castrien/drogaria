@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Vendas</title>
-</h:head>
-<h:body>
-	<p:growl id="mensagem"></p:growl>
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/templates/modelo.xhtml">
+
+
+<ui:define name="conteudo">
 
 	<h:form id="formulario">
 		<p:panel header="Produtos">
@@ -56,10 +55,7 @@
 				emptyMessage="Nenhum registro encontrado" paginator="true"
 				value="#{vendaBean.itensVenda}" var="itemVenda" rows="5"
 				paginatorPosition="bottom">
-				<f:facet name="header">
-					<p:commandButton value="Novo" actionListener="#{produtoBean.novo}"
-						update=":mensagem" oncomplete="PF('dialogo').show();" />
-				</f:facet>
+				<f:facet name="header"/>
 
 				<p:column headerText="Descrição">
 					<h:outputText value="#{itemVenda.produto.descricao}" />
@@ -147,11 +143,12 @@
 			
 			<h:panelGrid columns="2">
 				<p:commandButton value="Salvar" actionListener="#{vendaBean.salvar}"
-					update=":mensagem" oncomplete="PF('dialogo').hide();"/>
+					update=":mensagem :formulario:tabelaProduto :formulario:tabelaCesta :formulario:painelFinalizacao"
+					oncomplete="PF('dialogo').hide();"/>
 				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"/>
 			</h:panelGrid>
 		</h:form>
 	</p:dialog>
 
-</h:body>
-</html>
+</ui:define>
+</ui:composition>

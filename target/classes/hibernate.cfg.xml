@@ -10,9 +10,9 @@
 
         <!-- Database connection settings -->
         <property name="connection.driver_class">org.postgresql.Driver</property>
-        <property name="connection.url">jdbc:postgresql://localhost:5432/drogaria</property>
-        <property name="connection.username">postgres</property>
-        <property name="connection.password">claudio19034</property>
+        <property name="connection.url">jdbc:postgresql://node92412-testedrogaria.jelasticlw.com.br/drogaria</property>
+        <property name="connection.username">webadmin</property>
+        <property name="connection.password">PLBvqm17854</property>
 
         <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size">1</property>
@@ -30,7 +30,7 @@
         <property name="show_sql">true</property>
 
         <!-- Drop and re-create the database schema on startup -->
-        <property name="hbm2ddl.auto">validate</property>
+        <property name="hbm2ddl.auto">update</property>
 
   		<!-- Mapeamento -->
 		<mapping class="br.com.claudio.drogaria.domain.Estado"/>
