@@ -15,8 +15,10 @@
 				paginator="true" value="#{produtoBean.produtos}" var="produto" rows="5"
 				paginatorPosition="top">
 				<f:facet name="header">
-					<p:commandButton value="Novo" actionListener="#{produtoBean.novo}"
+					<p:commandButton icon="ui-icon-plus" actionListener="#{produtoBean.novo}"
 						update=":formCadastro:painel :mensagem" oncomplete="PF('dialogo').show();" />
+						
+						<p:commandButton icon="ui-icon-print" actionListener="#{produtoBean.imprimir}"/>
 				</f:facet>
 
 				<p:column headerText="Descrição">

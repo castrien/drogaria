@@ -16,6 +16,7 @@ public class Produto extends GenericDomain {
 	@Column(nullable = false)
 	private Short quantidade;
 	
+	//precision = qnts digitos no total e scale = qnts digitos apos a virgula
 	@Column(nullable = false, precision = 6, scale = 2)
 	private BigDecimal preco;
 	

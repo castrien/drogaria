@@ -110,6 +110,7 @@ public class VendaBean implements Serializable {
 			itensVenda.add(itemVenda);
 		}else{
 			ItemVenda itemVenda = itensVenda.get(achou);
+			//convertendo o int que é gerada da soma para string e depois para Short
 			itemVenda.setQuantidade(new Short(itemVenda.getQuantidade() + 1 + ""));
 			itemVenda.setValorParcial(produto.getPreco().multiply(new BigDecimal(itemVenda.getQuantidade())));
 		}

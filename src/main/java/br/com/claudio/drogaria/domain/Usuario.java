@@ -12,6 +12,9 @@ public class Usuario extends GenericDomain {
 
 	@Column(nullable = false, length = 32)
 	private String senha;
+	//não será salvo na banco
+	@Transient
+	private String senhaSemCriptografia;
 	@Column(nullable = false)
 	private Character tipo;
 	@Column(nullable = false)
@@ -71,6 +74,12 @@ public class Usuario extends GenericDomain {
 		this.pessoa = pessoa;
 	}
 	
+	public String getSenhaSemCriptografia() {
+		return senhaSemCriptografia;
+	}
 	
+	public void setSenhaSemCriptografia(String senhaSemCriptografia) {
+		this.senhaSemCriptografia = senhaSemCriptografia;
+	}
 	
 }

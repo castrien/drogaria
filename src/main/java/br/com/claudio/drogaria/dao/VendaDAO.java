@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import org.omnifaces.util.Messages;
 
 import br.com.claudio.drogaria.domain.ItemVenda;
+import br.com.claudio.drogaria.domain.Produto;
 import br.com.claudio.drogaria.domain.Venda;
 import br.com.claudio.drogaria.util.HibernateUtil;
 
@@ -24,7 +25,20 @@ public class VendaDAO extends GenericDAO<Venda> {
 					for(int posicao = 0; posicao < itensVenda.size(); posicao++){
 						ItemVenda itemVenda = itensVenda.get(posicao);
 						itemVenda.setVenda(venda);
+						
 						sessao.save(itemVenda);
+						
+						Produto produto = itemVenda.getProduto();
+						//convertendo o int que é gerada da soma para string e depois para Short
+						int qtd = produto.getQuantidade() - itemVenda.getQuantidade();
+						//verificando se o estoque não dará negativo
+						if(qtd >= 0){
+							produto.setQuantidade(new Short(produto.getQuantidade() - itemVenda.getQuantidade() +""));
+						
+							sessao.update(produto);
+						}else{
+							throw new RuntimeException("Quantidade insuficiente no estoque");
+						}
 					}
 					transacao.commit();
 				}catch(RuntimeException erro){

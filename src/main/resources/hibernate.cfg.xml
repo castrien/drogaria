@@ -9,10 +9,10 @@
     <session-factory>
 
         <!-- Database connection settings -->
-        <property name="connection.driver_class">org.postgresql.Driver</property>
-        <property name="connection.url">jdbc:postgresql://node92412-testedrogaria.jelasticlw.com.br/drogaria</property>
-        <property name="connection.username">webadmin</property>
-        <property name="connection.password">PLBvqm17854</property>
+    <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/drogaria</property>
+        <property name="connection.username">postgres</property>
+        <property name="connection.password">claudio19034</property>
 
         <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size">1</property>
@@ -43,6 +43,10 @@
 		<mapping class="br.com.claudio.drogaria.domain.Venda"/>
 		<mapping class="br.com.claudio.drogaria.domain.Usuario"/>
 		<mapping class="br.com.claudio.drogaria.domain.ItemVenda"/>
+		<mapping class="br.com.claudio.drogaria.domain.Caixa"/>
+		<mapping class="br.com.claudio.drogaria.domain.Movimentacao"/>
+		
+		
 		
 
     </session-factory>
