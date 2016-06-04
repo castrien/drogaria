@@ -7,12 +7,17 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.omnifaces.util.Messages;
 
 import br.com.claudio.drogaria.dao.PessoaDAO;
 import br.com.claudio.drogaria.dao.UsuarioDAO;
 import br.com.claudio.drogaria.domain.Pessoa;
 import br.com.claudio.drogaria.domain.Usuario;
+import br.com.claudio.drogaria.util.HibernateUtil;
 
 
 @SuppressWarnings("serial")
@@ -71,9 +76,17 @@ public class UsuarioBean implements Serializable {
 	}
 	
 	public void salvar(){
+		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
+
 		try {
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
+			
+			SimpleHash hash = new SimpleHash("md5",usuario.getSenha());
+			
+			usuario.setSenha(hash.toHex());
+			
 			usuarioDAO.merge(usuario);
+			
 			
 			usuario = new Usuario();
 			
@@ -81,6 +94,7 @@ public class UsuarioBean implements Serializable {
 			
 			PessoaDAO pessoaDAO = new PessoaDAO();
 			pessoas = pessoaDAO.listar("nome");
+			
 			Messages.addGlobalInfo("Usuário salvo com sucesso!");
 
 		} catch (RuntimeException erro) {

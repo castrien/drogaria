@@ -1,6 +1,7 @@
 package br.com.claudio.drogaria.bean;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -57,5 +58,14 @@ public class AutenticacaoBean {
 			erro.printStackTrace();
 			Messages.addGlobalError(erro.getMessage());
 		}
+	}
+	
+	public boolean temPermissoes(List<String> permissoes){
+		for(String permissao : permissoes){
+			if(usuarioLogado.getTipo() == permissao.charAt(0)){
+				return true;
+			}
+		}
+		return false;
 	}
 }
